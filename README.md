@@ -1,6 +1,6 @@
-# Wasserstein Transfer Learning (WaTL) - Code Documentation
+# Wasserstein Transfer Learning (WaTL)
 
-This repository contains the implementation of **Wasserstein Transfer Learning (WaTL)** algorithm, as described in the manuscript.
+This repository contains the implementation of **Wasserstein Transfer Learning (WaTL)** algorithm, as described in the Wasserstein Transfer Learning paper.
 
 ## Repository Structure
 
@@ -23,11 +23,6 @@ Codes/
 
 #### Step 1: Weighted Auxiliary Estimator
 
-**Manuscript:**
-$$\widehat{f}(x) = \frac{1}{n_0+n_{\mathcal{A}}}\sum_{k=0}^{K}n_k\widehat{f}^{(k)}(x)$$
-
-**Code implementation:**
-
 **Simulation (Global Fréchet):**
 - `SimulationFunc.R`, function `compute_f1_hat()`, lines 278-333
 - Aggregates target ($k=0$) and all sources ($k=1,\ldots,K$)
@@ -40,20 +35,12 @@ $$\widehat{f}(x) = \frac{1}{n_0+n_{\mathcal{A}}}\sum_{k=0}^{K}n_k\widehat{f}^{(k
 
 #### Step 2: Bias Correction Using Target Data
 
-**Manuscript:**
-$$\widehat{f}_0(x) = \argmin_{g\in L^2(0,1)}\frac{1}{n_0}\sum_{i=1}^{n_0}s_{iG}^{(0)}(x)\|F^{-1}_{\nu_i^{(0)}}-g\|_2^2 + \lambda\|g-\widehat{f}(x)\|_2$$
-
 **Code implementation:**
 - `SimulationFunc.R` / `RealDataFunc.R`, function `compute_f_L2()`
 - Uses gradient descent to minimize the objective
 - Regularization parameter $\lambda$ selected via cross-validation
-  - Simulation: `lambda_candidates <- seq(0, 3, by = 0.1)` (Setting 1)
-  - Real Data: Custom grid in `RealData.R`, lines 109-114
 
 #### Step 3: Projection to Wasserstein Space
-
-**Manuscript:**
-$$\widehat{m}_G^{(0)}(x) = \argmin_{\mu \in \mathcal{W}}\|\mathbf{F}^{-1}_{\mu}-\widehat{f}_0(x)\|_2$$
 
 **Code implementation:**
 - **Simulation:** Implicitly satisfied (quantile functions already monotone in data generation)
