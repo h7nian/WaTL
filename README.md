@@ -87,3 +87,16 @@ Rscript RealData/RealData.R <seed> <race> <M> <rate> <gender>
 ```bash
 Rscript RealData/RealData.R 42 1 100 1.0 0
 ```
+
+## Citation
+
+```
+@article{zhang2025wasserstein,
+  title={Wasserstein Transfer Learning},
+  author={Zhang, Kaicheng and Zhang, Sinian and Zhou, Doudou and Zhou, Yidong},
+  journal={arXiv preprint arXiv:2505.17404},
+  year={2025}
+}
+```
+
+
